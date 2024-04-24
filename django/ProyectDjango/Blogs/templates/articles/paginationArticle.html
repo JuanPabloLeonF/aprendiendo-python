@@ -1,0 +1,15 @@
+<div class="pagination">
+    {% if listArticles.has_previous %}
+        <a href="?page={{ listArticles.previous_page_number }}">&laquo; Anterior</a>
+    {% else %}
+        <span>&laquo; Anterior</span>
+    {% endif %}
+
+    <span>Página {{ listArticles.number }} de {{ listArticles.paginator.num_pages }}</span>
+    
+    {% if listArticles.has_next %}
+        <a href="?page={{ listArticles.next_page_number }}">Siguiente &raquo;</a>
+    {% else %}
+        <span>Siguiente &raquo;</span>
+    {% endif %}
+</div>

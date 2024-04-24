@@ -1,0 +1,8 @@
+{% extends 'layouts/layout.html' %}
+{% block title %}{{category.name}}{% endblock %}
+{% block content %}
+<h1 class="title-page">{{category.name}}</h1>
+<div class="content-page">
+    {% include "articles/forArticle.html" %}
+</div>
+{% endblock %}

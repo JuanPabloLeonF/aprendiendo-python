@@ -1,0 +1,32 @@
+{% extends 'layouts/layout.html'%}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+<h1>{{title}}</h1>
+
+{% if messages %}
+    {% for message in messages %}
+        {{message}}
+    {% endfor %}
+{% endif %}
+
+{% if formLoging.errors %}
+    <ul>
+        {% for field in formLoging %}
+            {% for error in field.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+{% endif %}
+
+    <form action="" method="post">
+        {% for field in formLoging.visible_fields %}
+            <div>
+                {{ field.label_tag }} {{ field }}
+            </div>
+        {% endfor %}
+        <div>
+            <input type="submit" value="Registrarse">
+        </div>
+    </form>
+{% endblock %}

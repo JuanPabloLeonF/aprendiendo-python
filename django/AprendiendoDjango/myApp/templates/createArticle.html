@@ -1,0 +1,39 @@
+{% extends 'layout.html' %} 
+{% block content %} 
+    <h3>Formularios en Django</h3>
+    {% if form.erros %}
+        <p>Hay errores en el formulario</p>
+        {{form.errors}}
+    {% else %}
+        <form action="" method="POST" class="form" enctype="multipart/form-data">
+            <!-- {% csrf_token %} -->
+            {% comment %} <div class="form-group">
+                <label for="title">Title</label>
+                <input required type="text" name="title" id="title">
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea required name="content" id="content"></textarea>
+            </div>
+            <div class="form-group">
+                <select required name="public" id="public">
+                    <option>Publicado</option>
+                    <option value="1">SI</option>
+                    <option value="0">NO</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input required type="file" name="image" id="image" accept="image/*">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar">
+                <input type="reset" value="Borrar">
+            </div> {% endcomment %}
+            {{formularyArticle}}
+            <div>
+                <input type="submit" value="Guardar">
+                <input type="reset" value="Borrar">
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}

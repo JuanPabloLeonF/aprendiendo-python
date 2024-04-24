@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <title>{{"Web Aprendiendo Django"|cut:"Aprendiendo"}}</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="{% static 'imgs/logo.png' %}" alt="logo" />
+      </div>
+      <nav class="menu">
+        <a href="{% url 'index' %}">Inicio</a>
+        <a href="{% url 'hello' %}">Hello World</a>
+        <a href="{% url 'contact' name='Juan Pablo' %}">Contact</a>
+        <a href="{% url 'admin:index' %}">Admin</a>
+        <a href="{% url 'createArticle' %}">Create Article</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        {% block content %}
+        <h2 class="title">Titulo de prueba</h2>
+        {% endblock %}
+      </div>
+    </main>
+
+    <footer>
+      <p>Proyecto con Django - {{"Juan Pablo leon Fonseca"|safe}}</p>
+      {% include "dateActuality.html" %} 
+    </footer>
+  </body>
+</html>

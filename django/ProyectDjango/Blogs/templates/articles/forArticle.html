@@ -1,0 +1,17 @@
+{% for article in listArticles %}
+<a style="color: black" href="{% url 'pageArticle' article.id %}">
+<div class="item-article">
+    <h2 class="h2">{{article.title}}<h2>
+    <div class="image-article">
+        <img src="{{article.image.url}}" alt="{{article.title}}">
+    </div>
+    <div class="div-list">
+        <ul class="list-category-article-div">
+        {% for category in article.categories.all %}
+            <li>{{category.name}}</li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+</a>
+{% endfor %}

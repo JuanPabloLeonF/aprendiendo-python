@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{% static 'imgs/logo.png' %}" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="{% static 'imgs/logo.png' %}" alt="logo" />
+      </div>
+      <nav class="menu">
+        <a href="{% url 'index' %}">Inicio</a>
+        {% if request.user.is_staff %}
+          <a href="admin/">Admin</a>
+        {% endif %}
+        {% for page in pages %}
+        <a href="{% url 'page' page.2 %}">{{page.1}}</a>
+        {% endfor %}
+        {% if request.user.is_authenticated %}
+          <a href="{% url 'logoutPage' %}">Cerrar Sesion</a>
+        {% endif %}
+        {% if not request.user.is_authenticated %}
+          <a href="{% url 'registerPage' %}">Registrarse</a>
+          <a href="{% url 'logingPage' %}">Iniciar Sesion</a>
+        {% endif %}
+      </nav>
+      <div class="menu-burguer">
+        <img src="{% static 'imgs/menu-burguer.png' %}" alt="menu" />
+        <nav class="menu">
+          <a href="{% url 'index' %}">Inicio</a>
+          {% if request.user.is_staff %}
+            <a href="admin/">Admin</a>
+          {% endif %}
+          {% for page in pages %}
+          <a href="{% url 'page' page.2 %}">{{page.1}}</a>
+          {% endfor %}
+          {% if request.user.is_authenticated %}
+            <a href="{% url 'logoutPage' %}">Cerrar Sesion</a>
+          {% endif %}
+          {% if not request.user.is_authenticated %}
+            <a href="{% url 'registerPage' %}">Registrarse</a>
+            <a href="{% url 'logingPage' %}">Iniciar Sesion</a>
+          {% endif %}
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        {% block content %}
+        <h2 class="title">Titulo de prueba</h2>
+        {% endblock %}
+      </div>
+    </main>
+
+    <footer>
+      <p>Proyecto con Django - Juan Pablo leon Fonseca</p>
+      <div class="footer-menu">
+        <ul class="footer-menu-ul">
+          <li><a href="{% url 'listTheArticles' %}">Articulos</a></li>
+          <ul class="list-category-article">
+            {% for category in lisCategories %}
+            <li>
+              <a href="{% url 'category' category.0 %}">
+                {{category.1}}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>

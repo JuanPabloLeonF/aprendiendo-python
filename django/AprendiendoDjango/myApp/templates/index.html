@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block content %} 
+{{block.super}}
+<section class="container-index">
+  <div class="container-index-p">
+    <p>{% lorem 1 b random %}</p>
+    {% if messages %}
+      {% for message in messages %}
+        <p>{{message}}</p>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div class="container-index-ul">
+    <ul>
+      {% for article in articles %}
+      <li>
+        <h4>{{ article.title }}</h4>
+        <p>{{ article.content }}</p>
+        {% if article.image.url != "null"  %}
+        <img src="{{ article.image.url }}" alt="imagen" />
+        {% endif %}
+        <a href="{% url 'deleteArticleById' id=article.id %}">Eliminar</a>
+      </li>
+
+      {% empty %}
+      <li>No hay articulos</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'layouts/layout.html' %}
+{% block title %}{{article.title}}{% endblock %}
+{% block content %}
+<h1 class="title-page">{{article.title}}</h1>
+<div class="content-page-article">
+    <div class="content-page-article-image">
+        <img src="{{article.image.url}}" alt="{{article.title}}">
+        <div class="div-list">
+            <ul class="list-category-article-div-article">
+                {% for category in article.categories.all %}
+                    <li>{{category.name}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <p>Publicado por: {{article.user.first_name}} {{article.user.last_name}}</p>
+            <p>Fecha de creación: {{article.createDate}}</p>
+        </div>
+    </div>
+    <div class="content-page-article-details">
+        <div>
+            <p>{{article.content|safe}}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

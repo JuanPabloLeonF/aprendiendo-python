@@ -1,0 +1,15 @@
+{% extends 'layouts/layout.html' %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+<h1>{{title}}</h1>
+{% if messages %} 
+    {% for message in messages %} 
+        {{message}} 
+    {% endfor %} 
+{% endif %}
+
+<h2>Bienvenido usuario: {{request.user.first_name}}</h2>
+<h2>Correo: {{request.user.email}}</h2>
+<h2>Usuario: {{request.user.username}}</h2>
+<h2>Nombre: {{request.user.first_name}} {{request.user.last_name}}</h2>
+{% endblock %}
